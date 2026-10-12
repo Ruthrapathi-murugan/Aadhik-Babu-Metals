@@ -112,7 +112,7 @@ export default function Home() {
         <div className="container header-inner">
           <button className="icon-btn show-md" aria-label="Open menu" onClick={() => setMenuOpen(true)}><Menu size={22} /></button>
           <a href="#" className="logo">
-            <span className="logo-mark">AB</span>
+            <img className="logo-mark" src="/logo.png" alt="Aadhik Babu Metals logo" />
             <span><strong>Aadhik Babu</strong><small>METALS · SINCE 1987</small></span>
           </a>
           <form className="search" onSubmit={(e) => { e.preventDefault(); goShop(); }}>
@@ -159,14 +159,21 @@ export default function Home() {
         {/* Hero slider */}
         <section className="hero">
           {slides.map((s, i) => (
-            <div key={i} className={i === slide ? "slide active" : "slide"} style={{ backgroundImage: `url(${s.image})` }}>
-              <div className="container slide-content">
-                <span className="kicker">{s.kicker}</span>
-                <h1>{s.title}</h1>
-                <p>{s.text}</p>
+            "banner" in s && s.banner ? (
+              <div key={i} className={i === slide ? "slide banner active" : "slide banner"} style={{ "--bg": `url(${s.image})` } as React.CSSProperties}>
+                <img src={s.image} alt={s.title} />
                 <button className="btn" onClick={() => { setQuery(s.query); goShop(); }}>{s.cta}</button>
               </div>
-            </div>
+            ) : (
+              <div key={i} className={i === slide ? "slide active" : "slide"} style={{ backgroundImage: `url(${s.image})` }}>
+                <div className="container slide-content">
+                  <span className="kicker">{s.kicker}</span>
+                  <h1>{s.title}</h1>
+                  <p>{s.text}</p>
+                  <button className="btn" onClick={() => { setQuery(s.query); goShop(); }}>{s.cta}</button>
+                </div>
+              </div>
+            )
           ))}
           <button className="hero-arrow left" aria-label="Previous slide" onClick={() => setSlide((slide - 1 + slides.length) % slides.length)}><ChevronLeft /></button>
           <button className="hero-arrow right" aria-label="Next slide" onClick={() => setSlide((slide + 1) % slides.length)}><ChevronRight /></button>
@@ -284,7 +291,7 @@ export default function Home() {
       <footer className="footer" id="contact">
         <div className="container footer-grid">
           <div>
-            <a href="#" className="logo light"><span className="logo-mark">AB</span><span><strong>Aadhik Babu</strong><small>METALS · SINCE 1987</small></span></a>
+            <a href="#" className="logo light"><img className="logo-mark" src="/logo.png" alt="Aadhik Babu Metals logo" /><span><strong>Aadhik Babu</strong><small>METALS · SINCE 1987</small></span></a>
             <p>Your trusted destination for handcrafted idols, temple items and pooja essentials.</p>
             <div className="topbar-social">
               <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
@@ -309,8 +316,11 @@ export default function Home() {
           <div>
             <h4>Contact Us</h4>
             <ul className="contact">
-              <li><MapPin size={16} /> {SHOP.address}</li>
-              <li><Phone size={16} /> <a href={`tel:${SHOP.phone.replace(/\s/g, "")}`}>{SHOP.phone}</a></li>
+              <li><MapPin size={16} /> <span>{SHOP.name}<br />{SHOP.address.map((line) => <span key={line}>{line}<br /></span>)}</span></li>
+              {SHOP.phones.map((p) => (
+                <li key={p}><Phone size={16} /> <a href={`tel:${p.replace(/\s/g, "")}`}>{p}</a></li>
+              ))}
+              <li><MessageCircle size={16} /> <a href={`https://wa.me/${SHOP.whatsapp}`} target="_blank" rel="noreferrer">{SHOP.whatsappDisplay} (WhatsApp)</a></li>
               <li><Mail size={16} /> <a href={`mailto:${SHOP.email}`}>{SHOP.email}</a></li>
             </ul>
           </div>

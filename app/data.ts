@@ -3,10 +3,16 @@
 
 export const SHOP = {
   name: "Aadhik Babu Metals",
-  phone: "+91 98765 43210",
-  whatsapp: "919876543210", // country code + number, no "+" or spaces
+  phone: "+91 73396 12918",
+  phones: ["+91 73396 12918", "+91 78128 72308"],
+  whatsapp: "919842826268", // country code + number, no "+" or spaces
+  whatsappDisplay: "+91 98428 26268",
   email: "hello@aadhikbabumetals.com",
-  address: "12, Big Bazaar Street, Kumbakonam, Tamil Nadu 612001",
+  address: [
+    "House of Handicraft",
+    "Thiruvavinankudi East Gate, Sannathi Road,",
+    "Adivaram, Palani – 624 601",
+  ],
   freeShippingAbove: 1499,
 };
 
@@ -21,6 +27,7 @@ export const categories: Category[] = [
   { slug: "pooja-items", name: "Pooja Items", image: img("valampuri-conch"), sub: ["Conch", "Vel"] },
   { slug: "malas", name: "Malas & Rudraksha", image: img("rudraksha-malas"), sub: ["Rudraksha", "Spatika"] },
   { slug: "gems", name: "Gems & Crystals", image: img("gems-crystals"), sub: ["Bracelet", "Crystal"] },
+  { slug: "theertham", name: "Theertham", image: img("dhumavati-theertham-pair"), sub: ["Dhumavati"] },
   { slug: "home-decor", name: "Home Decor", image: img("copper-elephants"), sub: ["Elephant"] },
 ];
 
@@ -55,9 +62,13 @@ export const products: Product[] = [
   { id: 16, name: "Rudraksha & Spatika Malas", category: "Malas & Rudraksha", price: 650, mrp: 800, rating: 4.8, reviews: 64, image: img("rudraksha-malas"), tags: ["best"] },
   { id: 17, name: "Gemstone Bracelets & Crystal Lingam", category: "Gems & Crystals", price: 1100, mrp: 1700, rating: 4.7, reviews: 38, image: img("gems-crystals"), tags: ["new"] },
   { id: 18, name: "Copper Finish Elephant Pair", category: "Home Decor", price: 32000, mrp: 35500, rating: 4.8, reviews: 16, image: img("copper-elephants"), tags: ["new"] },
+  { id: 19, name: "Dhumavati Aishwarya Theertham (Large Bottle)", category: "Theertham", price: 500, mrp: 600, rating: 4.8, reviews: 0, image: img("dhumavati-theertham-large"), tags: ["new"] },
+  { id: 20, name: "Dhumavati Aishwarya Theertham (Small Bottle)", category: "Theertham", price: 200, mrp: 250, rating: 4.8, reviews: 0, image: img("dhumavati-theertham-small"), tags: ["new"] },
 ];
 
 export const slides = [
+  // `banner: true` = the image already has its own text, so show it whole with no overlay or heading.
+  { kicker: "New Arrival", title: "Dhumavati Aishwarya Theertham", text: "Sacred theertham for prosperity — available in large and small bottles.", cta: "Shop Theertham", query: "Theertham", image: img("dhumavati-theertham-banner"), banner: true },
   { kicker: "Divine Idols", title: "Brass & panchaloha idols for your pooja room", text: "Murugan, Shiva, Perumal, Meenakshi, Andal and more — finely detailed and finished by hand.", cta: "Shop Idols", query: "Idols", image: img("murugan-peacock-large") },
   { kicker: "Temple Collection", title: "Thiruvasi, pallakku & temple essentials", text: "Grand pieces for temples, festivals and home shrines. Bulk orders welcome.", cta: "Shop Temple Items", query: "Temple Items", image: img("thiruvasi-arch") },
   { kicker: "Visit Our Store", title: "Thousands of pieces under one roof", text: "Walk in to see our full collection, or order on WhatsApp and we'll ship across India.", cta: "Browse Collection", query: "", image: img("shop-interior") },
